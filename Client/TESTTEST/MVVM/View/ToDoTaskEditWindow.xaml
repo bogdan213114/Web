@@ -1,0 +1,71 @@
+﻿<Window x:Class="TESTTEST.MVVM.View.EditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TESTTEST.MVVM.View"
+        mc:Ignorable="d"
+      Title="TaskCreation" WindowStyle="None" AllowsTransparency="True"   Background="Transparent" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Border BorderBrush="Black" BorderThickness="2" Height="520"  Width="300" CornerRadius="25">
+
+        <Border.Background>
+            <LinearGradientBrush >
+                <GradientStop  Color="AliceBlue"/>
+                <GradientStop  Color="AntiqueWhite"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <StackPanel>
+            <Label 
+                Margin="0,20,0,0"  
+                FontStyle="Italic" 
+                FontWeight="Bold" 
+                Content="TaskName:">
+
+            </Label>
+            <TextBox 
+                
+                Text="{Binding Title}"
+                x:Name="Created_Name" 
+                MaxLength="30" Cursor="IBeam">
+
+            </TextBox>
+            <Label 
+                Margin="0,20,0,0" 
+                FontWeight="Bold"  
+                FontStyle="Italic" 
+                Content="Description:">
+
+            </Label>
+            <TextBox 
+                 Text="{Binding Description}"
+                x:Name="Created_Content" 
+                Height="280" 
+                TextWrapping="Wrap" 
+                AcceptsReturn="True" 
+                MaxLength="500" 
+                Cursor="IBeam">
+
+            </TextBox>
+            <Label Height="23" Content="IsDone"/>
+            <CheckBox x:Name="StatusButton" Margin="5,0,0,0" Click="Status_Click">
+            </CheckBox>
+            <Button 
+                Click="Accept_Click"
+                BorderBrush="Aquamarine" 
+                Background="Aquamarine" 
+                Margin="5,3,5,0" 
+                Foreground="Black">Accept
+            </Button>
+            <Button 
+                Click="Decline_Click"
+                BorderBrush="Red" 
+                Background="Red" 
+                Margin="10,5,10,0" 
+                Foreground="Black" 
+                Cursor="Hand" 
+                Content="Decline">
+            </Button>
+        </StackPanel>
+
+    </Border>
+</Window>

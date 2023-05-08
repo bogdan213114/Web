@@ -1,0 +1,98 @@
+﻿<Window x:Class="TESTTEST.MVVM.View.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TESTTEST.MVVM.View"
+        mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+     
+        Title="To-do APP" 
+        Height="800"
+        Width="1200"
+        MinHeight="800" 
+        MinWidth="1200" 
+        WindowStartupLocation="CenterScreen">
+    <Grid 
+        x:Name="LayoutRoot" 
+        Background="White">
+        <Border 
+            MinHeight="300" 
+            MinWidth="500" 
+            MaxWidth="700" 
+            MaxHeight="400" 
+            CornerRadius ="30" 
+            Padding="20" 
+            Margin="20" 
+            Background="#FFF0AAAA">
+            <Border.Effect>
+                <DropShadowEffect 
+                    BlurRadius="30" 
+                    Color="#FFF0AAAA" 
+                    ShadowDepth="0">
+                </DropShadowEffect>
+            </Border.Effect>
+            <StackPanel  >
+                <TextBlock 
+                    Text="To to-do APP" 
+                    HorizontalAlignment="Center" 
+                    FontSize="30" 
+                    FontWeight="Bold" 
+                    Margin="0,20,0,0">
+
+                </TextBlock>
+                <Grid 
+                    Margin="0,20,0,0">
+                    <Button 
+                        Background="AliceBlue"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Margin="0,50,0,0" 
+                        Content="Enter" 
+                        MinHeight="40" 
+                        MinWidth="50" 
+                        Cursor="Hand">
+
+                    </Button>
+                    <Button Command="{Binding RegCommand}"
+                        HorizontalAlignment="Left"
+                        
+                        Margin="0,50,0,0" 
+                        Content="Registration" 
+                        MinHeight="40" 
+                        MinWidth="50" 
+                        Cursor="Hand">
+
+                    </Button>
+
+                </Grid>
+                <TextBox 
+                    PreviewKeyDown="TextBoxLogin_PreviewKeyDown"
+                    x:Name="TextBoxLogin" 
+                    materialDesign:HintAssist.Hint="Enter your Login" 
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                    Cursor="IBeam">
+
+                </TextBox>
+                <PasswordBox
+                    PreviewKeyDown="Passbox1_PreviewKeyDown"
+                    x:Name="Passbox1" 
+                    materialDesign:HintAssist.Hint="Enter your Password" 
+                    Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Cursor="IBeam">
+
+                </PasswordBox>
+
+                <Button 
+                    x:Name="AuthButton"
+                    Content="Enter your to Account" 
+                    Command="{Binding EnterToAccount}"
+                    Margin="0,20" Cursor="Hand" 
+                    />
+            </StackPanel>
+        </Border>
+
+
+
+    </Grid>
+</Window>

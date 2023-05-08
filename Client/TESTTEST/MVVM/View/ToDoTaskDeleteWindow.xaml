@@ -1,0 +1,55 @@
+﻿<Window x:Class="TESTTEST.MVVM.View.DeleteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TESTTEST.MVVM.View"
+        mc:Ignorable="d"
+        Title="DeleteWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Height="300" Width="415">
+   
+    <Grid Background="AntiqueWhite">
+
+        <StackPanel>
+            <TextBlock FontSize="30" Text="Are you sure, that you want to&#10;delete?" HorizontalAlignment="Center" Width="400" Height="98" />
+            <Label FontSize="30" HorizontalAlignment="Center" MaxHeight="40" x:Name="LabelForTitle"/>
+            <StackPanel Margin="0,80"   Height="40"  Orientation="Horizontal" >
+                <Button  Width="200" Foreground="Black" Click="Accept_Click" BorderBrush="Black" Content="Yes" Background="Azure" Cursor="Hand">
+                    <Button.Template >
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="buttonBorder" CornerRadius="25"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Height="{TemplateBinding Height}"
+                Width="{TemplateBinding Width}" >
+                                <ContentControl Margin="{TemplateBinding Padding}"
+                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                    Content="{TemplateBinding Content}"
+                     />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button BorderBrush="Black" Width="200" IsCancel="True" Content="No" Foreground="Black" Background="Azure">
+                    <Button.Template >
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="buttonBorder" CornerRadius="25"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Height="{TemplateBinding Height}"
+                Width="{TemplateBinding Width}" >
+                                <ContentControl Margin="{TemplateBinding Padding}"
+                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                    Content="{TemplateBinding Content}"
+                     />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

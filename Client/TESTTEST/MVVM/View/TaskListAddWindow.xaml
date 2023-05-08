@@ -1,0 +1,68 @@
+﻿<Window x:Class="TESTTEST.MVVM.View.CreateNewList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TESTTEST.MVVM.View"
+        mc:Ignorable="d"
+        Title="CreateNewList"  WindowStartupLocation="CenterScreen"  ResizeMode="NoResize" Background="AntiqueWhite" Height="800" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="0.2*">
+            </RowDefinition>
+            <RowDefinition>
+            </RowDefinition>
+            <RowDefinition Height="0.2*">
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Label HorizontalAlignment="Center" Content="Enter TaskList Name" ></Label>
+            <TextBox x:Name="TaskListName" Text="{Binding   NewTaskGroup.Title}"  MaxLength="30" Cursor="IBeam"></TextBox>
+            <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal">
+                <Label Content="Tasks in List" Margin="0,0,30,0"/>
+                <Label Content="AvaibleTasks" Margin="0,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+
+        <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding NewTaskGroup.Tasks}" SelectedItem="{Binding SelectedTaskIncreatedlist}">
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <StackPanel  Margin="5">
+                        <TextBlock FontSize="18" Text="{Binding Path=Title,  UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock MaxWidth="500" Text="{Binding Path=Description,  UpdateSourceTrigger=PropertyChanged}" />
+                        <CheckBox  IsEnabled="False" IsChecked="{Binding Path=IsDone, UpdateSourceTrigger=PropertyChanged}">
+                        </CheckBox>
+                        <TextBlock Text="{Binding Path=CreationDate,  UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding User.Tasks}" SelectedItem="{Binding SelectedTask}" >
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <StackPanel  Margin="5">
+                        <TextBlock FontSize="18" Text="{Binding Path=Title,  UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock MaxWidth="500" Text="{Binding Path=Description,  UpdateSourceTrigger=PropertyChanged}" />
+                        <CheckBox  IsEnabled="False" IsChecked="{Binding Path=IsDone, UpdateSourceTrigger=PropertyChanged}">
+                        </CheckBox>
+                        <TextBlock Text="{Binding Path=CreationDate,  UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button Command="{Binding AddToListCommand}" Margin="5,0,5,0" Cursor="Hand">Add
+            </Button>
+            <Button Command="{Binding RemoveFromListCommand}" Margin="5,0,5,0"  Cursor="Hand">Remove
+            </Button>
+            <Button Click="SaveList_Click" Margin="5,0,5,0" Cursor="Hand">SaveList
+            </Button>
+            <Button Click="Cancel_Click"  Margin="5,0,5,0" Cursor="Hand">Cancel
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

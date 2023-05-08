@@ -1,0 +1,92 @@
+﻿<Window x:Class="TESTTEST.MVVM.View.SelectedTaskGroupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TESTTEST.MVVM.View" xmlns:viewmodel="clr-namespace:TESTTEST.MVVM.ViewModel"
+        mc:Ignorable="d"
+             MinHeight="800" Height="800" ResizeMode="CanResizeWithGrip" Background="AntiqueWhite" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" MinWidth="1280" Width="1280">
+    <Window.Resources>
+        <ControlTemplate TargetType="Button" x:Key="btTemplate" >
+            <Border CornerRadius="25"
+                    Margin="0,0,0,0"
+                    BorderBrush="#FF37956F"
+                    BorderThickness="1"
+                    Background="#FF37956F"
+                    Height="{TemplateBinding Height}"
+                    Width="{TemplateBinding Width}" >
+                <ContentControl Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+            </Border>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid  ShowGridLines="False" >
+        <Grid.ColumnDefinitions  >
+            <ColumnDefinition  Width="0.3*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*" ></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition  Height="0.55*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.ColumnSpan="2" Background="#252525">
+            <Grid MouseDown="Grid_MouseDown" HorizontalAlignment="Stretch">
+                <Label Content="To-do-App"  Foreground="Gray" FontSize="28" FontWeight="SemiBold"/>
+                <StackPanel HorizontalAlignment="Right"  Orientation="Horizontal">
+                    <Button Background="Transparent" FontWeight="Bold" Padding="0,0,0,0" Content="&#128469;" Width="40" Click="Minimize_Click"  BorderThickness="0" Cursor="Hand">
+                    </Button>
+                    <Button Background="Transparent" FontWeight="Bold" Padding="0,0,0,0" Content="&#9633;" Width="40" Click="Maximize_Click" BorderThickness="0" Cursor="Hand">
+                    </Button>
+                    <Button Margin="0,0,0,0" Background="Transparent" Padding="0,0,0,0" Content="🗙"  Click ="Close_Click" Width="40" BorderThickness="0">
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+        </StackPanel>
+        <Grid Grid.Row="1" Background="AntiqueWhite" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+           
+        </Grid>
+        <StackPanel Background="AntiqueWhite" VerticalAlignment="Bottom"  Grid.Row="2"  Grid.Column="0" >
+            <Button x:Name="myButton" Command="{Binding BackToMainWindow}" ToolTip="Back to main Window"  Cursor="Hand" Margin="0,10,0,5" Template="{StaticResource btTemplate}" MinHeight="45" Height="45" MinWidth="100">BackToAllTasks</Button>
+            <Button x:Name="myButton1" ToolTip="Delete Selected  List" Command="{Binding Delete}" CommandParameter="{Binding SelectedTaskGroup}" Cursor="Hand" Margin="0,10,0,5" Template="{StaticResource btTemplate}" MinHeight="45" MinWidth="100" Height="45" >DeleteThisLsit</Button>
+            <Button  x:Name="myButton3" Command="{Binding EditTaskList}" Content="Edit TaskList"  ToolTip="Edit Selected TaskList" Margin="0,10,0,5"  Cursor="Hand" Template="{StaticResource btTemplate}" MinHeight="45" MinWidth="100" Height="45">
+            </Button>
+        </StackPanel>
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding  SelectedTaskGroup.Title}" Grid.Row ="1" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30"  />
+        <StackPanel Margin="10,40,10,0"  DataContext="{Binding SelectedTask}"   Grid.Column="0" Grid.ColumnSpan="2" Grid.Row ="1">
+            
+            <TextBlock Text="Выбранный элемент"  />
+            <TextBlock x:Name="Title1" Text="Title" />
+            <TextBlock Background="Beige" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock x:Name="Description1" Text="Description" />
+            <TextBlock Background="Beige" TextWrapping="Wrap" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock x:Name="Date1" Text="Date" />
+            <TextBlock Background="Beige" Text="{Binding CreationDate, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="IsDone" />
+            <CheckBox x:Name="Check"  IsChecked="{Binding  IsDone,  UpdateSourceTrigger=PropertyChanged }" IsEnabled="False"  />
+
+        </StackPanel>
+        <ListView   BorderThickness="0" Grid.Row="3" Background="#EFEADD" Grid.Column="2"  ItemsSource="{Binding  SelectedTaskGroup.Tasks}" SelectedItem="{Binding SelectedTask}"  >
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <StackPanel  Margin="5">
+                        <TextBlock FontSize="18" Text="{Binding Path=Title,  UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock MaxWidth="500" Text="{Binding Path=Description,  UpdateSourceTrigger=PropertyChanged}" />
+                        <CheckBox  IsEnabled="False" IsChecked="{Binding Path=IsDone, UpdateSourceTrigger=PropertyChanged}">
+                        </CheckBox>
+                        <TextBlock Text="{Binding Path=CreationDate,  UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
